@@ -6,7 +6,7 @@ body {
   place-content: center;
   background-color: blue;
   .container {
-    max-width:fit-content;
+    max-width: fit-content;
     padding: 0;
   }
   .list {
@@ -18,7 +18,6 @@ body {
     min-width: 400px;
     margin: auto;
     gap: 5px;
-
 
     .item {
       user-select: none;
@@ -33,11 +32,11 @@ body {
         opacity: 0;
         border-color: red;
       }
-      &.in-place{
+      &.in-place {
         background-color: lighten($color: green, $amount: 050%);
         border: 2px solid green;
       }
-      &.not-in-place{
+      &.not-in-place {
         border: 2px solid red;
         background-color: lighten($color: red, $amount: 045%);
       }
@@ -48,17 +47,15 @@ body {
       }
     }
   }
-  .btns { 
+  .btns {
     @include flex-center;
     gap: 20px;
   }
-  .btn { 
+  .btn {
     background-color: white;
     color: blue;
     border-radius: 5px;
     padding: 0px 10px;
     margin: 50px auto 0;
-
-
   }
 }
