@@ -27,4 +27,3 @@ const initSortableList = (e) => {
 };
 
 list.addEventListener("dragover", initSortableList);
-list.addEventListener("dragenter", (e) => e.preventDefault());
