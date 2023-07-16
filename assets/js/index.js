@@ -12,7 +12,7 @@ items.forEach((draggable) => {
   });
 });
 
-const initSortableList = (e) => {
+const dragItem = (e) => {
   e.preventDefault();
   const draggingItem = list.querySelector(".dragging");
   const siblings = [...list.querySelectorAll(".draggable:not(.dragging)")];
@@ -25,5 +25,4 @@ const initSortableList = (e) => {
   else list.append(draggingItem);
   // we can do that without if else , just inserting before  but an undefined will print out if we drag last item
 };
-
-list.addEventListener("dragover", initSortableList);
+list.addEventListener("dragover", dragItem);
