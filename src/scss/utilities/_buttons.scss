@@ -16,13 +16,4 @@
   cursor: pointer;
 }
 
-.main-btn {
-  padding: 5px 10px;
-  background-color: $main-clr;
-  color: white;
-  border-radius: 5px;
-  font-size: $fz-medium;
-  &:hover {
-    background-color: darken($main-clr, 10);
-  }
-}
+

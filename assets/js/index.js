@@ -4,7 +4,7 @@ console.log(list);
 
 items.forEach((draggable) => {
   draggable.addEventListener("dragstart", (e) => {
-    setTimeout(() => draggable.classList.add("dragging"), 0);
+    draggable.classList.add("dragging");
   });
 
   draggable.addEventListener("dragend", (e) => {
