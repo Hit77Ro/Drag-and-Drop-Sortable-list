@@ -5,15 +5,20 @@ body {
   display: grid;
   place-content: center;
   background-color: blue;
+  .container {
+    max-width:fit-content;
+    padding: 0;
+  }
   .list {
     padding: 30px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     background-color: white;
-    max-width: 400px;
+    min-width: 400px;
     margin: auto;
     gap: 5px;
+
 
     .item {
       user-select: none;
@@ -25,7 +30,16 @@ body {
       @include flex-between;
       transition: 0.2s ease-in-out;
       &.dragging {
-        opacity: 0.5;
+        opacity: 0;
+        border-color: red;
+      }
+      &.in-place{
+        background-color: lighten($color: green, $amount: 050%);
+        border: 2px solid green;
+      }
+      &.not-in-place{
+        border: 2px solid red;
+        background-color: lighten($color: red, $amount: 045%);
       }
       cursor: move;
       img {
@@ -33,5 +47,18 @@ body {
         border-radius: 50%;
       }
     }
+  }
+  .btns { 
+    @include flex-center;
+    gap: 20px;
+  }
+  .btn { 
+    background-color: white;
+    color: blue;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 50px auto 0;
+
+
   }
 }
