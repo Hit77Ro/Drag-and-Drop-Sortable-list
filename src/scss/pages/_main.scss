@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as *;
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center;
+  background-color: blue;
+  .list {
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    background-color: white;
+    max-width: 400px;
+    margin: auto;
+    gap: 5px;
+
+    flex-direction: column;
+    .item {
+      user-select: none;
+      background-color: white;
+      cursor: pointer;
+      padding: 5px 010px;
+      border: 1px solid #888;
+      border-radius: inherit;
+      @include flex-between;
+      gap: 20px;
+      transition: 0.2s ease-in-out;
+      &.dragging {
+        opacity: 0;
+      }
+      cursor: move;
+      img {
+        max-width: 50px;
+        border-radius: 50%;
+      }
+    }
+  }
+}

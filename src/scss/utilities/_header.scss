@@ -1,0 +1,96 @@
+@use "../abstracts/variables" as *;
+.header {
+  background-color: $light;
+  transition: $transition;
+  box-shadow: $shadow-1;
+  height: $header-height;
+  &.sticky {
+    z-index: zindex(header);
+    @include fixed(top 0 left 0);
+    width: 100%;
+  }
+  .container {
+    height: 100%;
+    background-color: $light;
+    .logo {
+      font-size: $fz-extralarge;
+      text-transform: capitalize;
+      color: $main-clr;
+    }
+
+    .nav {
+      @include media(md, "max") {
+        gap: 0;
+
+        @include absolute(left 0 top -500%);
+        background-color: $light;
+        border-bottom: 1px solid $main-clr;
+        width: 100%;
+        border-radius: $r5;
+        transition: $transition;
+        z-index: 1;
+        transform-origin: top right;
+
+        &.active {
+          top: $header-height;
+        }
+      }
+      &-links {
+        gap: 20px;
+        @include media(md, "max") {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+
+      &-link {
+        transition: $transition;
+        color: $title-clr;
+        padding-inline: 1.5rem;
+        height: $header-height;
+        position: relative;
+        @include media(md, "max") {
+          &:hover {
+            background-color: $light;
+          }
+        }
+        &::after {
+          transition: $transition;
+          @include pseudo();
+          @include box(0% 3px);
+          @include position(top 0 left 0);
+          background-color: $main-clr;
+          @include media(md, "max") {
+            content: none;
+          }
+        }
+
+        &:hover {
+          background-color: $section-bg;
+          color: $main-clr;
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .right {
+      gap: 20px;
+      .menu-toggler {
+        @include media(md) {
+          display: none;
+        }
+        display: block;
+        cursor: pointer;
+        @include box($header-height/2);
+        background-color: $section-bg;
+        color: $main-clr-alt;
+        border-radius: $r5;
+        transition: $transition;
+        &:hover {
+          background-color: darken($section-bg, 10);
+        }
+      }
+    }
+  }
+}
