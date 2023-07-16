@@ -54,6 +54,7 @@ function reset() {
   list.textContent = "";
   initalItems.forEach((el) => list.append(el));
   items.forEach((el) => el.classList.remove("in-place", "not-in-place"));
+  saveOrder()
 }
 
 function saveOrder() {
