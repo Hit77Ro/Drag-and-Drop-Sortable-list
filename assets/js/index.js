@@ -1,8 +1,11 @@
 let items = Array.from(document.querySelectorAll(".item"));
+const initalItems = [...document.querySelectorAll(".item")];
 let list = document.querySelector(".list");
 let resetBtn = document.querySelector(".reset");
-resetBtn.onclick = reset;
 
+// Load the order from localStorage if available
+setItemsFromLS();
+//   add dragstart and dragend events on items
 items.forEach((draggable) => {
   draggable.addEventListener("dragstart", (e) => {
     draggable.classList.add("dragging");
@@ -13,9 +16,12 @@ items.forEach((draggable) => {
   });
 });
 
+resetBtn.onclick = reset;
 list.addEventListener("dragover", dragItem);
-//  check order on drop
-list.addEventListener("drop", checkOrder);
+list.addEventListener("drop", () => {
+  checkOrder();
+  saveOrder();
+});
 
 function dragItem(e) {
   e.preventDefault();
@@ -30,23 +36,38 @@ function dragItem(e) {
   else list.append(draggingItem);
   // we can do that without if else , just inserting before  but an undefined will print out if we drag last item
 }
-// create checkOrder function
+
 function checkOrder() {
-  items = document.querySelectorAll(".item");
-  items.forEach((item, i) => {
-    if (item.tabIndex == i) {
-      item.classList.add("in-place");
-      item.classList.remove("not-in-place");
+  let randomOrder = list.querySelectorAll(".item");
+  randomOrder.forEach((el, i) => {
+    if (el.tabIndex == i) {
+      el.classList.add("in-place");
+      el.classList.remove("not-in-place");
     } else {
-      item.classList.remove("in-place");
-      item.classList.add("not-in-place");
+      el.classList.remove("in-place");
+      el.classList.add("not-in-place");
     }
   });
 }
 
 function reset() {
   list.textContent = "";
-  originalItem.forEach((item) => list.append(item));
-  items.forEach((item) => item.classList.remove("not-in-place", "in-place"));
-  checkOrder();
+  initalItems.forEach((el) => list.append(el));
+  items.forEach((el) => el.classList.remove("in-place", "not-in-place"));
+}
+
+function saveOrder() {
+  let array = [...document.querySelectorAll(".item")].map((el) =>
+    items.indexOf(el)
+  );
+
+  localStorage.setItem("itemsOrder", array.join(","));
+}
+
+function setItemsFromLS() {
+  const order = localStorage.getItem("itemsOrder");
+  if (order) {
+    order.split(",").map((index) => list.append(items[index]));
+    checkOrder();
+  }
 }
