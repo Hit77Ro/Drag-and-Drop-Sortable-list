@@ -25,4 +25,5 @@ const dragItem = (e) => {
   else list.append(draggingItem);
   // we can do that without if else , just inserting before  but an undefined will print out if we drag last item
 };
+
 list.addEventListener("dragover", dragItem);
