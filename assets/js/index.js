@@ -4,7 +4,7 @@ let list = document.querySelector(".list");
 let resetBtn = document.querySelector(".reset");
 
 // Load the order from localStorage if available
-setItemsFromLS();
+getItemsFromLS();
 //   add dragstart and dragend events on items
 items.forEach((draggable) => {
   draggable.addEventListener("dragstart", (e) => {
@@ -65,7 +65,7 @@ function saveOrder() {
   localStorage.setItem("itemsOrder", array.join(","));
 }
 
-function setItemsFromLS() {
+function getItemsFromLS() {
   const order = localStorage.getItem("itemsOrder");
   if (order) {
     order.split(",").map((index) => list.append(items[index]));
