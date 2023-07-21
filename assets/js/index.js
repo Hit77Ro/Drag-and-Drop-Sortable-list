@@ -32,8 +32,7 @@ function dragItem(e) {
     (sibling) =>
       e.clientY <= sibling.getBoundingClientRect().y + sibling.offsetHeight / 2
   );
-  if (nextSibling) li
-  st.insertBefore(draggingItem, nextSibling);
+  if (nextSibling) list.insertBefore(draggingItem, nextSibling);
   else list.append(draggingItem);
   // we can do that without if else , just inserting before  but an undefined will print out if we drag last item
 }
